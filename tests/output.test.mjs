@@ -49,3 +49,23 @@ test("metadata and privacy claims match the static experience", async () => {
   assert.match(privacy, /do not use analytics/i);
   assert.match(privacy, /do not set non-essential cookies/i);
 });
+
+test("images are local, present, labelled, and represented in sharing metadata", async () => {
+  const home = await read("index.html");
+
+  assert.doesNotMatch(home, /<img[^>]+src="https?:/i);
+  assert.equal((home.match(/<img /g) ?? []).length, 6);
+  assert.equal((home.match(/<img [^>]*alt="[^"]+"/g) ?? []).length, 6);
+  assert.match(home, /property="og:image"/);
+
+  for (const file of [
+    "hero.webp",
+    "skincare.webp",
+    "makeup.webp",
+    "haircare.webp",
+    "body-care.webp",
+    "beauty-tools.webp",
+  ]) {
+    await access(distUrl(`images/${file}`));
+  }
+});

@@ -2,6 +2,7 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { site } from "../data/site";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -28,9 +29,15 @@ const canonical = new URL(Astro.url.pathname, site.url).toString();
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site.url}/og.png`} />
+    <meta
+      property="og:image:alt"
+      content="Simple Beauty — A simpler way to discover what’s next in beauty."
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.url}/og.png`} />
     <title>{pageTitle}</title>
   </head>
   <body>

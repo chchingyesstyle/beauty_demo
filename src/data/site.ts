@@ -11,7 +11,7 @@ export const categories = [
   {
     name: "Skincare",
     image: "/images/skincare.webp",
-    alt: "Neutral skincare bottles arranged in soft natural light",
+    alt: "A drop of facial oil held above a hand in warm natural light",
     copy: "Thoughtful essentials for cleansing, hydration and everyday skin rituals.",
   },
   {
@@ -29,7 +29,7 @@ export const categories = [
   {
     name: "Body care",
     image: "/images/body-care.webp",
-    alt: "Body-care bottles and textures in a calm spa setting",
+    alt: "A person applying an unbranded lotion to the back of their hand",
     copy: "Everyday cleansing, moisture and body-care rituals.",
   },
   {
