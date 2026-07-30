@@ -1,0 +1,58 @@
+---
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="How Simple Beauty handles information on this pre-launch website."
+>
+  <article class="legal-page">
+    <header class="legal-header">
+      <p class="eyebrow">Simple Beauty</p>
+      <h1>Privacy Policy</h1>
+      <p>Last updated 30 July 2026</p>
+    </header>
+
+    <div class="legal-content">
+      <section>
+        <h2>About this website</h2>
+        <p>
+          This is a static, informational website for Simple Beauty, a proposed
+          UK online beauty retailer preparing for launch.
+        </p>
+      </section>
+
+      <section>
+        <h2>Information we collect</h2>
+        <p>
+          We do not use analytics, operate user accounts or provide a contact
+          form. We do not set non-essential cookies.
+        </p>
+        <p>
+          Our hosting provider may process limited technical logs, such as IP
+          addresses and request details, where needed to deliver and protect the
+          website.
+        </p>
+      </section>
+
+      <section>
+        <h2>Email</h2>
+        <p>
+          When you use an email link, your message is handled by your chosen
+          email service and the recipient’s mailbox provider. Please avoid
+          sending sensitive information by email.
+        </p>
+      </section>
+
+      <section>
+        <h2>Your questions</h2>
+        <p>
+          For privacy questions, email <a href={`mailto:${site.email}`}
+            >{site.email}</a
+          >.
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

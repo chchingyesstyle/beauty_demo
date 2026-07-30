@@ -1,0 +1,38 @@
+---
+import { site } from "../data/site";
+
+const links = [
+  ["/#about", "About"],
+  ["/#categories", "Categories"],
+  ["/#approach", "Our approach"],
+  ["/#contact", "Contact"],
+] as const;
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <span class="brand-mark" aria-hidden="true">SB</span>
+      <span>{site.name}</span>
+    </a>
+
+    <button
+      class="menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      <span class="menu-label">Menu</span>
+      <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      {
+        links.map(([href, label]) => (
+          <a href={href}>{label}</a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,65 @@
+---
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Terms of Use"
+  description="Terms for using the Simple Beauty pre-launch website."
+>
+  <article class="legal-page">
+    <header class="legal-header">
+      <p class="eyebrow">Simple Beauty</p>
+      <h1>Terms of Use</h1>
+      <p>Last updated 30 July 2026</p>
+    </header>
+
+    <div class="legal-content">
+      <section>
+        <h2>Informational purpose</h2>
+        <p>
+          This pre-launch website introduces the Simple Beauty concept. It is
+          provided for general information and does not offer any product for
+          sale.
+        </p>
+      </section>
+
+      <section>
+        <h2>Launch plans</h2>
+        <p>
+          Product categories, availability and other plans may change as the
+          business and online platform are developed. Nothing on this website
+          confirms stock, supplier relationships or a launch date.
+        </p>
+      </section>
+
+      <section>
+        <h2>Using the information</h2>
+        <p>
+          We aim to keep the website clear and accurate, but we do not guarantee
+          that every item will always be complete or current. You should not
+          rely on this pre-launch information as professional or purchasing
+          advice.
+        </p>
+      </section>
+
+      <section>
+        <h2>Content</h2>
+        <p>
+          Website copy and original design elements belong to Simple Beauty.
+          Photography is used under licence. Please do not reproduce site
+          content without permission from the relevant rights holder.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          Questions about these terms can be sent to <a
+            href={`mailto:${site.email}`}>{site.email}</a
+          >.
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

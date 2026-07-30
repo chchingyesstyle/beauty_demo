@@ -1,0 +1,116 @@
+---
+import CategoryCard from "../components/CategoryCard.astro";
+import { categories, launchSteps, site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={site.name} description={site.description}>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">Preparing for launch · United Kingdom</p>
+      <h1 id="hero-title">A simpler way to discover what’s next in beauty.</h1>
+      <p class="hero-intro">
+        Simple Beauty is currently developing our online platform: a considered
+        UK destination for Korean and Asian skincare, makeup and everyday beauty
+        rituals.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#categories"
+          >Explore our direction</a
+        >
+        <a class="text-link" href={`mailto:${site.email}`}>Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img
+        src="/images/hero.webp"
+        alt="A calm arrangement of beauty products in warm natural light"
+        width="960"
+        height="1120"
+      />
+      <p><span>01</span> Thoughtfully considered for UK routines</p>
+    </div>
+  </section>
+
+  <section id="about" class="about-section section">
+    <p class="section-label">Our point of view</p>
+    <div class="about-grid">
+      <h2>Beauty should feel inspiring, not overwhelming.</h2>
+      <div>
+        <p class="lead">
+          We are shaping Simple Beauty around one idea: make considered Korean
+          and Asian beauty discoveries easier to explore in the UK.
+        </p>
+        <p>
+          The business and online platform are in development. We are taking
+          time to research categories, understand everyday routines and build a
+          clear, useful shopping experience before launch.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories" class="categories-section section">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">The edit in progress</p>
+        <h2>Five areas we’re exploring</h2>
+      </div>
+      <p>
+        Our planned range will bring together practical essentials and
+        thoughtful discoveries. Final products and brands are not yet
+        confirmed.
+      </p>
+    </div>
+    <div class="category-grid">
+      {
+        categories.map((category, index) => (
+          <CategoryCard {...category} featured={index === 0 || index === 3} />
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="approach" class="approach-section section">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">How we plan to operate</p>
+        <h2>Building carefully, step by step.</h2>
+      </div>
+      <p>
+        We are creating the foundations for a focused online retailer rather
+        than rushing the process.
+      </p>
+    </div>
+    <ol class="steps-list">
+      {
+        launchSteps.map(([number, title, copy]) => (
+          <li>
+            <span>{number}</span>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section id="contact" class="coming-soon-section section">
+    <div class="coming-soon-copy">
+      <p class="section-label">Coming soon</p>
+      <h2>The simple routine starts here.</h2>
+      <p>
+        Product availability will be announced closer to launch. In the
+        meantime, we welcome questions about the Simple Beauty concept.
+      </p>
+      <a class="button button-light" href={`mailto:${site.email}`}
+        >Email Simple Beauty</a
+      >
+    </div>
+    <div class="contact-details">
+      <span>Contact</span>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>{site.location}</span>
+    </div>
+  </section>
+</BaseLayout>

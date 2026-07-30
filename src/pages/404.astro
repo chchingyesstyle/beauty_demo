@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The requested Simple Beauty page could not be found."
+>
+  <section class="not-found">
+    <div class="not-found-number" aria-hidden="true">404</div>
+    <div>
+      <p class="eyebrow">Page not found</p>
+      <h1>That page isn’t part of the routine.</h1>
+      <p>
+        It may have moved, or it may not exist yet. Return to Simple Beauty’s
+        pre-launch home page.
+      </p>
+      <a class="button button-primary" href="/">Back to home</a>
+    </div>
+  </section>
+</BaseLayout>

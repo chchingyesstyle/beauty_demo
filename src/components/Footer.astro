@@ -1,0 +1,32 @@
+---
+import { site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a class="brand footer-brand" href="/" aria-label={`${site.name} home`}>
+        <span class="brand-mark" aria-hidden="true">SB</span>
+        <span>{site.name}</span>
+      </a>
+      <p>A thoughtful beauty destination, preparing for launch in the UK.</p>
+    </div>
+
+    <div class="footer-links" aria-label="Footer navigation">
+      <a href="/#about">About</a>
+      <a href="/#categories">Categories</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+    </div>
+
+    <div class="footer-contact">
+      <span>Say hello</span>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>{site.location}</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© {new Date().getFullYear()} {site.name}</span>
+    <span>Preparing for launch</span>
+  </div>
+</footer>
