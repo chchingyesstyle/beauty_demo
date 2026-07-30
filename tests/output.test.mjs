@@ -69,3 +69,58 @@ test("images are local, present, labelled, and represented in sharing metadata",
     await access(distUrl(`images/${file}`));
   }
 });
+
+test("every internal document link resolves in dist", async () => {
+  const pages = [
+    "index.html",
+    "privacy/index.html",
+    "terms/index.html",
+    "404.html",
+  ];
+  const html = (await Promise.all(pages.map(read))).join("\n");
+  const hrefs = [
+    ...html.matchAll(/<a [^>]*href="(\/[^"#?]*)/g),
+  ].map((match) => match[1]);
+
+  for (const href of new Set(hrefs)) {
+    const relative =
+      href === "/" ? "index.html" : `${href.replace(/^\//, "")}/index.html`;
+    await access(distUrl(relative));
+  }
+});
+
+test("built pages contain no secrets or unsupported commercial claims", async () => {
+  const html = await read("index.html");
+
+  assert.doesNotMatch(
+    html,
+    /(?:ghp_|github_pat_|CF_API_TOKEN|CLOUDFLARE_API_TOKEN)/i,
+  );
+  assert.doesNotMatch(
+    html,
+    /best[- ]selling|thousands of customers|official partner|in stock/i,
+  );
+});
+
+test("crawl discovery files are emitted", async () => {
+  await access(distUrl("robots.txt"));
+  await access(distUrl("sitemap-index.xml"));
+});
+
+test("mobile hero media stays proportionate and inside the viewport", async () => {
+  const css = await readFile(
+    new URL("../src/styles/global.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(css, /\.hero-visual img\s*\{[^}]*height:\s*auto;/);
+  assert.match(css, /\.category-image img\s*\{[^}]*height:\s*auto;/);
+  assert.match(
+    css,
+    /@media \(max-width: 640px\)[\s\S]*?\.hero-visual p\s*\{[^}]*right:\s*0;/,
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 640px\)[\s\S]*?\.hero-visual::before\s*\{[^}]*right:\s*0;/,
+  );
+});

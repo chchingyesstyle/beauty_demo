@@ -386,6 +386,7 @@ h3 {
 
 .hero-visual img {
   width: 100%;
+  height: auto;
   aspect-ratio: 6 / 7;
   object-fit: cover;
   border-radius: 48% 48% 18px 18px;
@@ -488,6 +489,7 @@ h3 {
 
 .category-image img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   filter: saturate(0.86);
@@ -935,13 +937,13 @@ h3 {
   }
 
   .hero-visual::before {
-    right: -34px;
+    right: 0;
     width: 126px;
     height: 126px;
   }
 
   .hero-visual p {
-    right: -22px;
+    right: 0;
     bottom: -30px;
     max-width: 210px;
   }
