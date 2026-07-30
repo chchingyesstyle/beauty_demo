@@ -44,7 +44,11 @@ test("metadata and privacy claims match the static experience", async () => {
 
   assert.match(
     home,
-    /<link rel="canonical" href="https:\/\/beauty-demo\.cchk\.uk\/?"/,
+    /<link rel="canonical" href="https:\/\/beauty-demo\.cchk\.uk\/"/,
+  );
+  assert.match(
+    privacy,
+    /<link rel="canonical" href="https:\/\/beauty-demo\.cchk\.uk\/privacy\/"/,
   );
   assert.match(privacy, /do not use analytics/i);
   assert.match(privacy, /do not set non-essential cookies/i);
@@ -83,10 +87,19 @@ test("every internal document link resolves in dist", async () => {
   ].map((match) => match[1]);
 
   for (const href of new Set(hrefs)) {
+    const documentPath = href.replace(/^\/|\/$/g, "");
     const relative =
-      href === "/" ? "index.html" : `${href.replace(/^\//, "")}/index.html`;
+      href === "/" ? "index.html" : `${documentPath}/index.html`;
     await access(distUrl(relative));
   }
+});
+
+test("legal links use Cloudflare's canonical trailing-slash URLs", async () => {
+  const home = await read("index.html");
+
+  assert.match(home, /href="\/privacy\/"/);
+  assert.match(home, /href="\/terms\/"/);
+  assert.doesNotMatch(home, /href="\/(?:privacy|terms)"/);
 });
 
 test("built pages contain no secrets or unsupported commercial claims", async () => {
@@ -122,5 +135,21 @@ test("mobile hero media stays proportionate and inside the viewport", async () =
   assert.match(
     css,
     /@media \(max-width: 640px\)[\s\S]*?\.hero-visual::before\s*\{[^}]*right:\s*0;/,
+  );
+});
+
+test("collapsed mobile navigation cannot receive keyboard focus", async () => {
+  const css = await readFile(
+    new URL("../src/styles/global.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(
+    css,
+    /@media \(max-width: 900px\)[\s\S]*?\.site-nav\s*\{[^}]*visibility:\s*hidden;/,
+  );
+  assert.match(
+    css,
+    /\.site-nav\[data-open\]\s*\{[^}]*visibility:\s*visible;/,
   );
 });

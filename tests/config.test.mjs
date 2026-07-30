@@ -10,10 +10,14 @@ test("Cloudflare serves the Astro build with a custom 404 and domain", async () 
   assert.equal(config.assets.directory, "./dist");
   assert.equal(config.assets.not_found_handling, "404-page");
   assert.equal(config.assets.html_handling, "auto-trailing-slash");
+  assert.equal(config.compatibility_date, "2026-07-29");
   assert.deepEqual(config.routes, [
     { pattern: "beauty-demo.cchk.uk", custom_domain: true },
   ]);
   assert.equal("main" in config, false);
+
+  const astro = await readFile("astro.config.mjs", "utf8");
+  assert.match(astro, /trailingSlash:\s*"always"/);
 });
 
 test("secret-bearing files are ignored and examples contain names only", async () => {

@@ -799,6 +799,7 @@ h3 {
     opacity: 0;
     pointer-events: none;
     transform: translateY(-18px);
+    visibility: hidden;
     transition:
       opacity 220ms ease,
       transform 280ms var(--ease);
@@ -808,6 +809,7 @@ h3 {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+    visibility: visible;
   }
 
   .site-nav a {
